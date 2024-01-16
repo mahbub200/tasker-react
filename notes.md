@@ -38,3 +38,32 @@ when clicking show modal is seen
 
 it renders between hero section and tasklist needs to open like modal
 so give style
+
+change for with htmlFor
+task name and corresponding html name should be same
+pass two things on input field value and a method
+1 ta method diye sob koto input re control kora hoi
+
+```
+const [task, setTask] = useState({
+    // id: crypto.randomUUID(),
+    title: "",
+    description: "",
+    tags: [],
+    priority: "",
+    isFavorite: false,
+  });
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+     if (name=='tags'){
+        value=value.split(',')
+    }
+
+    setTask({ ...task },
+        [name]:value);
+  };
+```
+
+jokon handle change method call korbo tokon handlee change method name dekbe suppose name=title
+r title value ta state e judi thake ,input name and object name same thakle tokon value change korbe

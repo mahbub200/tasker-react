@@ -13,14 +13,14 @@ const TaskBoard = () => {
     priority: "high",
     isFavourite: true,
   };
-  function handleAddClick() {
-    console.log("clicke");
+  function handleAddTask(task) {
+    console.log("adding a task", task);
   }
   const [tasks, setTasks] = useState([defaultTasks]);
   const [showAddModal, setShowAddModal] = useState(false);
   return (
     <section className="mb-20" id="tasks">
-      {showAddModal && <AddTaskModal></AddTaskModal>}
+      {showAddModal && <AddTaskModal onSave={handleAddTask}></AddTaskModal>}
       <div className="container">
         <div className="p-2 flex justify-end">
           <SearchBox></SearchBox>
