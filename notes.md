@@ -27,3 +27,14 @@ now pass into tasklist component
 ```
 
 now map it to render as it is an array
+
+# modal add task
+
+```
+const [showAddModal, setShowAddModal] = useState(false);
+```
+
+when clicking show modal is seen
+
+it renders between hero section and tasklist needs to open like modal
+so give style
