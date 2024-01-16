@@ -5,19 +5,21 @@ import TaskAction from "./TaskAction";
 import TaskList from "./TaskList";
 
 const TaskBoard = () => {
-  const defaultTasks = {
-    id: crypto.randomUUID(),
-    title: "learn react",
-    description: "react is used for user interactivity ",
-    tags: ["web", "html", "css"],
-    priority: "high",
-    isFavourite: true,
-  };
-  function handleAddTask(task) {
-    console.log("adding a task", task);
-  }
-  const [tasks, setTasks] = useState([defaultTasks]);
+    const defaultTasks = {
+      id: crypto.randomUUID(),
+      title: "learn react",
+      description: "react is used for user interactivity ",
+      tags: ["web", "html", "css"],
+      priority: "high",
+      isFavourite: true,
+    };
+    const [tasks, setTasks] = useState([defaultTasks]);
   const [showAddModal, setShowAddModal] = useState(false);
+  function handleAddTask(newTasks) {
+  setTasks([...tasks,newTasks])
+    setShowAddModal(false)
+  }
+  
   return (
     <section className="mb-20" id="tasks">
       {showAddModal && <AddTaskModal onSave={handleAddTask}></AddTaskModal>}
