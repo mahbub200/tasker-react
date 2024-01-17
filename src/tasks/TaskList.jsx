@@ -1,7 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
-const TaskList = ({ tasks, onEdit, onCloseClick }) => {
+const TaskList = ({ tasks, onEdit, onDelete }) => {
   return (
     <div className="overflow-auto">
       <table className="table-fixed overflow-auto xl:w-full">
@@ -56,7 +56,12 @@ const TaskList = ({ tasks, onEdit, onCloseClick }) => {
               <td className="text-center">{task.priority}</td>
               <td>
                 <div className="flex items-center justify-center space-x-3">
-                  <button className="text-red-500">Delete</button>
+                  <button
+                    className="text-red-500"
+                    onClick={() => onDelete(task.id)}
+                  >
+                    Delete
+                  </button>
                   <button
                     className="text-blue-500"
                     onClick={() => onEdit(task)}
