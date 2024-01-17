@@ -5,24 +5,50 @@ import TaskAction from "./TaskAction";
 import TaskList from "./TaskList";
 
 const TaskBoard = () => {
-    const defaultTasks = {
-      id: crypto.randomUUID(),
-      title: "learn react",
-      description: "react is used for user interactivity ",
-      tags: ["web", "html", "css"],
-      priority: "high",
-      isFavourite: true,
-    };
-    const [tasks, setTasks] = useState([defaultTasks]);
+  const defaultTasks = {
+    id: crypto.randomUUID(),
+    title: "learn react",
+    description: "react is used for user interactivity ",
+    tags: ["web", "html", "css"],
+    priority: "high",
+    isFavourite: true,
+  };
+  const [tasks, setTasks] = useState([defaultTasks]);
   const [showAddModal, setShowAddModal] = useState(false);
-  function handleAddTask(newTasks) {
-  setTasks([...tasks,newTasks])
-    setShowAddModal(false)
+  const [taskToUpdate, setTaskToUpdate] = useState(null);
+  function handleAddEditTask(newTask, isAdd, onCloseClick) {
+    if (isAdd) {
+      setTasks([...tasks, newTask]);
+    } else {
+      setTasks(
+        tasks.map((task) => {
+          if (task.id === newTask.id) {
+            return newTask;
+          }
+          return task;
+        })
+      );
+    }
+    setShowAddModal(false);
   }
-  
+
+  function handleEditTask(task) {
+    setTaskToUpdate(task);
+    setShowAddModal(true);
+  }
+  function onCloseClick() {
+    setShowAddModal(false);
+    setTaskToUpdate(null);
+  }
   return (
     <section className="mb-20" id="tasks">
-      {showAddModal && <AddTaskModal onSave={handleAddTask}></AddTaskModal>}
+      {showAddModal && (
+        <AddTaskModal
+          onSave={handleAddEditTask}
+          taskToUpdate={taskToUpdate}
+          onCloseClick={onCloseClick}
+        ></AddTaskModal>
+      )}
       <div className="container">
         <div className="p-2 flex justify-end">
           <SearchBox></SearchBox>
@@ -30,7 +56,7 @@ const TaskBoard = () => {
 
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
           <TaskAction onAddClick={() => setShowAddModal(true)} />
-          <TaskList tasks={tasks} />
+          <TaskList tasks={tasks} onEdit={handleEditTask} />
         </div>
       </div>
     </section>

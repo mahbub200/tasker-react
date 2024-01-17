@@ -67,3 +67,13 @@ const [task, setTask] = useState({
 
 jokon handle change method call korbo tokon handlee change method name dekbe suppose name=title
 r title value ta state e judi thake ,input name and object name same thakle tokon value change korbe
+
+# edit task
+
+- it is in task list so when clikcing button modal pops up
+- modal e judi task pass korte paree
+- cant pass component to normal function instead call useSTate
+
+- 2 things
+  user add korse or edit korse
+  when edit data should be changed not default
